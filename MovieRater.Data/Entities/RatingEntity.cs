@@ -1,19 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 
     public class RatingEntity
     {
-        public enum ParentalAdvisorRatings
-        {
-            G,
-            PG,
-            PG13,
-            R
-
-        }
+        
         // forgign key points to a movie or show
         [Key]
         public int Id { get; set; }
@@ -21,8 +15,6 @@ using System.Threading.Tasks;
         public int Stars { get; set; }
         [Required]
         public string Review { get; set; }
-        [Required]
-        public string ParentalAdvisor {get; set;}
-
+        
 
     }
