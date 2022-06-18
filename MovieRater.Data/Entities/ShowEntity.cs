@@ -17,5 +17,7 @@ using System.Threading.Tasks;
         public string Cast { get; set; }
         [Required]
         public GenreType GenreType { get; set; }
+        public ParentalAdvisory ParentalAdvisory { get; set; }
+        public virtual List<RatingEntity> Ratings { get; set; }
 
     }

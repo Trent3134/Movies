@@ -35,7 +35,7 @@ using Microsoft.AspNetCore.Mvc;
                     return BadRequest("Show could not be created");
             }
 
-            [HttpGet("{showId: int")]
+            [HttpGet("ReviewByGenre/{showId:int}")]
             public async Task<IActionResult> GetShowById([FromRoute] int showId)
             {
                 var detail = await _sService.GetShowByIdAsync(showId);

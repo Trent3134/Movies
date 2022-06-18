@@ -13,4 +13,5 @@ using System.Threading.Tasks;
         public string Title { get; set; }
         [Required]
         public GenreType GenreType { get; set; }
+        public ParentalAdvisory ParentalAdvisory { get; set; }
     }

@@ -12,4 +12,5 @@ using System.Threading.Tasks;
         public string Review { get; set; }
         public string Cast { get; set; }
         public GenreType GenreType { get; set; }
+        public ParentalAdvisory ParentalAdvisory { get; set; }
     }
