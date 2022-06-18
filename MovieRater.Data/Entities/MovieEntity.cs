@@ -11,4 +11,5 @@ using System.Threading.Tasks;
         public string Review { get; set; }
         public string  Cast { get; set; }
         public GenreType GenreType { get; set; }
+        public virtual List<RatingEntity> Ratings {get; set;}
     }

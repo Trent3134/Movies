@@ -20,4 +20,5 @@ public class RatingController : ControllerBase
             var ratings = await _ratingService.GetAllRatingsAsync();
             return Ok(ratings);
         }
+        
     }

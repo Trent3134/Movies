@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
     public interface IRatingService
     {
+
+
         Task<IEnumerable<RatingListItem>> GetAllRatingsAsync();
-         
+        Task<bool>DeleteRating();
     }

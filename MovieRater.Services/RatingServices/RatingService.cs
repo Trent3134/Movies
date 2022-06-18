@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-public class RatingService
+public class RatingService : IRatingService
     {
     private readonly ApplicationDbContext _dbContext;
         public RatingService(ApplicationDbContext dbContext)
