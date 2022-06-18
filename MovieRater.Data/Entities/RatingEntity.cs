@@ -8,7 +8,5 @@ using System.Threading.Tasks;
     public class RatingEntity
     {
         // forgign key points to a movie or show
-        [ForeignKey(nameof(ShowEntity))]
-        public int ShowEntityId { get; set; }
-        public ShowEntity ShowEntity { get; set; }
+
     }
