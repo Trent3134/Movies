@@ -27,13 +27,12 @@ using Microsoft.AspNetCore.Mvc;
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(ModelState);
-
+                    return BadRequest();
+                }
                     if (await _sService.CreateShowAsync(request))
                     return Ok("Show was Created");
 
                     return BadRequest("Show could not be created");
-                }
             }
 
             [HttpGet("{showId: int")]
@@ -43,6 +42,24 @@ using Microsoft.AspNetCore.Mvc;
                 return detail is not null
                     ? Ok(detail)
                     : NotFound();
+            }
+
+            [HttpPut]
+            public async Task<IActionResult> UpdateShowById([FromBody] ShowUpdate request)
+            {
+                if(!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                return await _sService.UpdateShowAsync(request)? Ok("Show was updated"): BadRequest("Show was not updated");
+            }
+
+            [HttpDelete("{showId:int}")]
+            public async Task<IActionResult> DeleteShow([FromRoute] int showId)
+            {
+                return await _sService.DeleteShowAsync(showId)
+                    ? Ok($"Show {showId} was deleted!")
+                    : BadRequest($"Show {showId} could not be deleted!");
             }
         }
     

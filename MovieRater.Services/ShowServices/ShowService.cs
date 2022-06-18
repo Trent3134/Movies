@@ -15,7 +15,7 @@ public class ShowService : IShowService
             _context = context;
             _mapper = mapper;
         }
-        public async Task<bool> ShowAsync(ShowCreate model)
+        public async Task<bool> CreateShowAsync(ShowCreate model)
         {
 
             var entity = new ShowEntity
@@ -65,28 +65,42 @@ public class ShowService : IShowService
 
         public async Task<IEnumerable<ShowListItem>> GetAllShowsAsync()
         {
-            var shows = await _context.Shows
-            .Where(showEntity => showEntity.Id == showEntity.Id).ToListAsync()
-            .Select(showEntity => new ShowListItem
-            {
-                Id = shows.Id,
-                Title = shows.Title,
-                GenreType = shows.GenreType
-            }) .ToListAsync();
-            return shows;
+            var shows = await _context.Shows.ToListAsync();
+            var showList = _mapper.Map<List<ShowListItem>>(shows);
+            return showList;
         }
 
         public async Task<ShowDetail> GetShowByIdAsync(int Id)
         {
             var showEntity = await _context.Shows
-                .FirstOrDefault(e => 
-                e.Id == Id && e.ShowId == Id);
+                .FirstOrDefaultAsync(e => 
+                e.Id == Id);
                 return showEntity is null ? null: _mapper.Map<ShowDetail>(showEntity);
         }
 
-        public async Task<bool> UpdateShowAsync (ShowsUpdate request)
+        public async Task<bool> UpdateShowAsync (ShowUpdate request)
         {
-            var showEntity = await _context.Shows.FindAsync(request.Id);
-            if (showEntity?)
+            var showEntity = await _context.Shows
+            .FirstOrDefaultAsync(e =>
+            e.Id == request.Id);
+            if (showEntity == null)
+            {
+                return false;
+            }
+            var newEntity = _mapper.Map(request, showEntity);
+            _context.Shows.Update(newEntity);
+            var numberOfChanges = await _context.SaveChangesAsync();
+            return numberOfChanges == 1;
+        }
+
+        public async Task<bool> DeleteShowAsync(int showId)
+        {
+            var showEntity = await _context.Shows.FindAsync(showId);
+            if (showEntity == null)
+            {
+                return false;
+            }
+            _context.Shows.Remove(showEntity);
+            return await _context.SaveChangesAsync() == 1;
         }
     }
