@@ -6,8 +6,7 @@
         Fantasy,
         SciFi,
         Dramedy,
-        Action
-
-
+        Action,
+        Romance
 
     }
