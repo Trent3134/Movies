@@ -14,6 +14,17 @@ public class RatingController : ControllerBase
             ratingService = _ratingService;
         }
         
+        [HttpPost]
+        public async Task<IActionResult> CreateRating([FromBody] RatingCreate request)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if(await _ratingService.CreateRatingAsync(request)) return Ok(("Rating "));
+            return BadRequest("Rating could not be created");
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllRatings()
         {

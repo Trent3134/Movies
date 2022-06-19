@@ -7,7 +7,7 @@ using System.Threading.Tasks;
     public interface IRatingService
     {
 
-
+        Task<bool>CreateRatingAsync(RatingCreate request);
         Task<IEnumerable<RatingListItem>> GetAllRatingsAsync();
        
     }

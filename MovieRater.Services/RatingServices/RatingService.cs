@@ -12,6 +12,24 @@ public class RatingService : IRatingService
             _dbContext = dbContext;
         }
 
+        public async Task<bool>CreateRatingAsync(RatingCreate request)
+        {
+            var ratingEntity= new RatingEntity
+            {
+                Stars = request.Stars,
+                Review = request.Review,
+                MovieEntityId = request.MovieEntityId,
+                ShowEntityId = request.ShowEntityId
+
+            };
+
+            _dbContext.Ratings.Add(ratingEntity);
+
+            var numberOfChanges = await _dbContext.SaveChangesAsync();
+            return numberOfChanges == 1;
+
+        }
+
         public async Task<IEnumerable<RatingListItem>> GetAllRatingsAsync()
         {
             var ratings = await _dbContext.Ratings
