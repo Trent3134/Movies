@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 
         Task<IEnumerable<RatingListItem>> GetAllRatingsAsync();
-        Task<bool>DeleteRating();
+       
     }

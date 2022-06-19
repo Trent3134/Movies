@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
         [ForeignKey(nameof(ShowEntity))]
         public int? ShowEntityId { get; set; }
+
         public ShowEntity ShowEntity{get; set;}
-        
 
     }

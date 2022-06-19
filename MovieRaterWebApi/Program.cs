@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IRatingService, RatingService>();
+
+builder.Services.AddAutoMapper(typeof(Mapper));
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 
 var app = builder.Build();
