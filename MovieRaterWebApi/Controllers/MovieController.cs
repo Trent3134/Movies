@@ -28,7 +28,7 @@ using Microsoft.AspNetCore.Mvc;
         return BadRequest("Movie review could not be created.");
     }
 
-    [HttpGet("Get all Movie reviews")]
+    [HttpGet]
     public async Task<IActionResult> GetAllMovieReviewes()
     {
         var movies1 = await _movieService.GetAllMoviesAsync();
