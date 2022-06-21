@@ -43,5 +43,15 @@ public class RatingService : IRatingService
                 .ToListAsync();
                 return ratings;
         }
-        
+        public async Task<bool> UpdateRatingAsync(RatingUpdate request)
+        {
+            var ratingEntity = await _dbContext.Ratings.FindAsync(request.Id);
+
+            ratingEntity.Review = request.Review;
+            ratingEntity.Stars = request.Stars;
+
+            var numberOfChanges = await _dbContext.SaveChangesAsync();
+            return numberOfChanges == 1;
+
+        }
     }

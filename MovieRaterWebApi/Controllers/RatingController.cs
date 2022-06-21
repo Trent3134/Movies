@@ -32,4 +32,14 @@ public class RatingController : ControllerBase
             return Ok(ratings);
         }
         
+        [HttpPut]
+        public async Task<IActionResult> UpdateRatingByID([FromBody] RatingUpdate request)
+        {
+            if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+            return await _ratingService.UpdateRatingAsync(request)
+            ? Ok("Rating Successfeully Updated")
+            : BadRequest("Rating could not be updated");
+        }
     }
