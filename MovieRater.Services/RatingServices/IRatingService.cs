@@ -11,5 +11,5 @@ using System.Threading.Tasks;
         Task<IEnumerable<RatingListItem>> GetAllRatingsAsync();
         Task<bool> UpdateRatingAsync(RatingUpdate request);
         Task<bool> DeleteRatingByIdAsync(int ratingId);
-       
+    
     }

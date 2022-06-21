@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 
-        [Route("api/[ShowController]")]
+        [Route("api/[controller]")]
         [ApiController]
         public class ShowController : ControllerBase
         {

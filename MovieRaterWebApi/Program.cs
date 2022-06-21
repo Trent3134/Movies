@@ -13,15 +13,11 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-<<<<<<< HEAD
-=======
-builder.Services.AddScoped<IRatingService, RatingService>();
->>>>>>> a8ed20f16b2713d52fab1b2c37d71a92e75f8630
 
 builder.Services.AddAutoMapper(typeof(Mapper));
 builder.Services.AddScoped<IShowService, ShowService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
-builder.Services.AddScoped<IShowService, ShowService>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 
 
 

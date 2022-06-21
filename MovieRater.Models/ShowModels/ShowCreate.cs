@@ -21,8 +21,7 @@ using System.Threading.Tasks;
         [MaxLength(250, ErrorMessage = "{0} must contain no more than (1} character.")]
         public string Cast { get; set; }
         [Required]
-        [MinLength(1, ErrorMessage = "{0} must be at least {1} characters long.")]
-        [MaxLength(250, ErrorMessage = "{0} must contain no more than (1} character.")]
+        
         public GenreType GenreType { get; set; }
     }
 
