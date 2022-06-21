@@ -16,6 +16,7 @@ builder.Services.AddScoped<IRatingService, RatingService>();
 
 builder.Services.AddAutoMapper(typeof(Mapper));
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IShowService, ShowService>();
 
 
 var app = builder.Build();

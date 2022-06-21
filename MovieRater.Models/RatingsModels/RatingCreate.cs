@@ -14,9 +14,9 @@ using System.Threading.Tasks;
         [Required]
         public string Review { get; set; }
 
-        [Required]
+        
         public int? MovieEntityId { get; set; }
         
-        [Required]
-        public int? ShowEntityId { get; set; }
+        
+       // public int? ShowEntityId { get; set; }
     }

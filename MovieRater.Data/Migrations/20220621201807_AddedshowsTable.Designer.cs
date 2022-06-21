@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MovieRater.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220621201807_AddedshowsTable")]
+    partial class AddedshowsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,6 +66,9 @@ namespace MovieRater.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ShowEntityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Stars")
                         .HasColumnType("int");
 
@@ -71,7 +76,22 @@ namespace MovieRater.Data.Migrations
 
                     b.HasIndex("MovieEntityId");
 
+                    b.HasIndex("ShowEntityId");
+
                     b.ToTable("Ratings");
+                });
+
+            modelBuilder.Entity("ShowEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShowEntity");
                 });
 
             modelBuilder.Entity("RatingEntity", b =>
@@ -80,7 +100,13 @@ namespace MovieRater.Data.Migrations
                         .WithMany("Ratings")
                         .HasForeignKey("MovieEntityId");
 
+                    b.HasOne("ShowEntity", "ShowEntity")
+                        .WithMany()
+                        .HasForeignKey("ShowEntityId");
+
                     b.Navigation("MovieEntity");
+
+                    b.Navigation("ShowEntity");
                 });
 
             modelBuilder.Entity("MovieEntity", b =>

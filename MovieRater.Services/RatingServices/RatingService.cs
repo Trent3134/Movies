@@ -14,12 +14,16 @@ public class RatingService : IRatingService
 
         public async Task<bool>CreateRatingAsync(RatingCreate request)
         {
+            if(request.MovieEntityId == null)
+            {
+                return false;
+            }
             var ratingEntity= new RatingEntity
             {
                 Stars = request.Stars,
                 Review = request.Review,
                 MovieEntityId = request.MovieEntityId,
-                ShowEntityId = request.ShowEntityId
+                //ShowEntityId = request.ShowEntityId
 
             };
 

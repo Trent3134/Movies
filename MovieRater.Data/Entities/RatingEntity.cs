@@ -21,9 +21,9 @@ using System.Threading.Tasks;
         public int? MovieEntityId { get; set; }
         public MovieEntity MovieEntity { get; set; }
 
-        [ForeignKey(nameof(ShowEntity))]
-        public int? ShowEntityId { get; set; }
+        // [ForeignKey(nameof(ShowEntity))]
+        // public int? ShowEntityId { get; set; }
 
-        public ShowEntity ShowEntity{get; set;}
+        // public ShowEntity ShowEntity{get; set;}
 
     }
