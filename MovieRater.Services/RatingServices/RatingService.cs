@@ -54,4 +54,12 @@ public class RatingService : IRatingService
             return numberOfChanges == 1;
 
         }
+
+        public async Task<bool> DeleteRatingByIdAsync(int ratingId)
+        {
+            var ratingEntity = await _dbContext.Ratings.FindAsync(ratingId);
+
+            _dbContext.Ratings.Remove(ratingEntity);
+            return await _dbContext.SaveChangesAsync() == 1;
+        }
     }

@@ -42,4 +42,13 @@ public class RatingController : ControllerBase
             ? Ok("Rating Successfeully Updated")
             : BadRequest("Rating could not be updated");
         }
+
+        [HttpDelete("{ratingId:int}")]
+        public async Task<IActionResult> DeleteRating([FromRoute] int ratingId)
+        {
+            return await _ratingService.DeleteRatingByIdAsync(ratingId)
+                ? Ok(($"Rating {ratingId} was deleted successfully"))
+                : BadRequest($"Rating {ratingId} could not be deleted");
+        }
+
     }
