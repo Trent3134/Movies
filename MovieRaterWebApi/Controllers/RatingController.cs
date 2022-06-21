@@ -11,7 +11,7 @@ public class RatingController : ControllerBase
         private readonly IRatingService _ratingService;
         public RatingController (IRatingService ratingService)
         {
-            ratingService = _ratingService;
+            _ratingService = ratingService;
         }
         
         [HttpPost]
@@ -21,7 +21,11 @@ public class RatingController : ControllerBase
             {
                 return BadRequest(ModelState);
             }
-            if(await _ratingService.CreateRatingAsync(request)) return Ok(("Rating "));
+
+            if(await _ratingService.CreateRatingAsync(request)) 
+            {
+                return Ok(("Rating was successfully created"));
+            }
             return BadRequest("Rating could not be created");
         }
 
